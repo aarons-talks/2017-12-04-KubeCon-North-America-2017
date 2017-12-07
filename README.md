@@ -59,6 +59,34 @@ We see this topology in many cases, including:
 - The [Fluentd logging driver](https://docs.docker.com/engine/admin/logging/fluentd/) runs as a sidecar, and your app is configured to send logs to `localhost`
 - A metrics system you may have runs as a sidecar, and your app sends metrics to `localhost`
 
+# Record your configuration
+
+Kubernetes provides a [declarative API](https://en.wikipedia.org/wiki/Declarative_programming) that allows you to tell it the _end state_ in which you want your app to be, without telling it how to get there. The logic that Kubernetes follows internally to change the state of the cluster from where it is to that end state is called _reconciliation_.
+
+You should always keep the **latest working copy** of your application checked into your source repository (i.e. Github) so that you can always submit it to Kubernetes to get your app into a good state.
+
+Express your app as a [Helm](https://helm.sh/) chart, so that you are a simple `helm install` away from bringing your app to a good, working state.
+
+# Ask for the least
+
+Similar to the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege), you should always ask Kubernetes for the fewest resources that your app needs to run properly. Leave the rest for Kubernetes to manage for you.
+
+Here are some examples of resources that you should ask the least from Kubernetes:
+
+- RBAC permissions
+- Containers in a single pod
+- CPU shares or memory
+- Disk space (i.e. in a `PersistentVolumeClaim`)
+
+# Build on the shoulders of giants
+
+The Kubernetes API abstracts away a lot of valuable functionality that is _hard to get right_. This functionality is built by smart people, and tested very thoroughly. Always try to use the Kubernetes API first before you build something from scratch.
+
+If you can't, look to the cloud native ecosystem. It has a large-and-growing number of high quality software projects that your app can benefit from.
+
+Finally, if you can't find exactly what you need, pick the next best thing and build atop that (and open source _that_ if you can!)
+
+We as a community should strive to follow the [don't repeat yourself (DRY)](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) principle, and this is how we do it.
 
 
 
