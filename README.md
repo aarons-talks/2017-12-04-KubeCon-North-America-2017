@@ -2,6 +2,8 @@
 
 This is a list of best practices for building an app to run on Kubernetes, using cloud-native technologies.
 
+This was born from a [talk](https://www.youtube.com/watch?v=S9l2MWhIBhc) I gave at KubeCon 2017 in Austin, TX.
+
 # Observability is golden
 
 Kubernetes schedules your pods, and is more effective at doing so when it knows:
